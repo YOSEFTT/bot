@@ -6,7 +6,7 @@ import requests
 from email.mime.text import MIMEText
 
 
---- הגדרות קבועות ---
+# --- הגדרות קבועות ---
 IMAP_SERVER = "imap.gmail.com"
 SMTP_SERVER = "smtp.gmail.com"
 
@@ -15,7 +15,7 @@ EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 
---- קבלת מיילים חדשים ---
+# --- קבלת מיילים חדשים ---
 def get_unread_emails():
 try:
 mail = imaplib.IMAP4_SSL(IMAP_SERVER)
@@ -51,7 +51,7 @@ except Exception as e:
     return []
 
 
---- שליחת מייל תשובה ---
+# --- שליחת מייל תשובה ---
 def send_email(to_email, subject, body_text):
 try:
 formatted_text = body_text.replace('\n', '<br>')
@@ -76,7 +76,7 @@ except Exception as e:
     print(f"[!] Error sending email to {to_email}: {e}")
 
 
---- קבלת תגובה מג'מיני ---
+# --- קבלת תגובה מג'מיני ---
 def get_gemini_reply(prompt):
 try:
 url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
@@ -95,7 +95,7 @@ except Exception as e:
     return "שגיאה פנימית בתקשורת עם Gemini."
 
 
---- הפעלת הבוט ---
+# --- הפעלת הבוט ---
 def main():
 print("Starting Gemini Email Bot...")
 emails = get_unread_emails()
