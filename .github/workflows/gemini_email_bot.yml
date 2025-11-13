@@ -1,10 +1,8 @@
-3, הדביקו את התוכן הבא️: [ קובץ ההרצה (YAML)]
-
 name: Gemini Email Bot
 
 on:
-schedule:
-- cron: '*/2 * * * *' # ריצה כל 2 דקות
+# schedule:
+# - cron: '*/2 * * * *' # ריצה כל 2 דקות
 workflow_dispatch: # אפשר להריץ גם ידנית
 
 jobs:
