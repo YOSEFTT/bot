@@ -1,0 +1,37 @@
+3, הדביקו את התוכן הבא️: [ קובץ ההרצה (YAML)]
+
+name: Gemini Email Bot
+
+on:
+schedule:
+- cron: '*/2 * * * *' # ריצה כל 2 דקות
+workflow_dispatch: # אפשר להריץ גם ידנית
+
+jobs:
+run-bot:
+runs-on: ubuntu-latest
+
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v4
+ 
+  - name: Setup Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: '3.10'
+ 
+  - name: Install dependencies
+    run: |
+      python -m pip install --upgrade pip
+      pip install requests
+ 
+  - name: Run Gemini Email Bot
+    env:
+      EMAIL_ACCOUNT: ${{ secrets.EMAIL_ACCOUNT }}
+      EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    run: |
+      echo "Starting Gemini Email Bot..."
+      python gemini_email_bot.py
+      echo "Bot finished successfully."
+ 
